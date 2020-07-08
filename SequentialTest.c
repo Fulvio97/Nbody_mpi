@@ -69,7 +69,7 @@ int main(const int argc, const char** argv) {
 	  }
 
 	  fclose(fp);
-	  fp = fopen("TestLog.txt", "w");
+	  fp = fopen("SequentialLog.txt", "w");
 
 	  for (int iter = 1; iter <= nIters; iter++) {
 
