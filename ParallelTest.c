@@ -130,7 +130,7 @@ int main(int argc, char *argv[]){
 					MPI_Recv(&pr[values], 1, mpi_particle, j, tag, MPI_COMM_WORLD, &status);
 			}
 
-			log = fopen("log.txt", "a+");
+			log = fopen("ParallelLog.txt", "a+");
 			fprintf(log, "**ITERATION %d**\n", i);
 
 			for(j = 0; j < nBodies; j++){
