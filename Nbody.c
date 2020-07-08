@@ -139,6 +139,7 @@ int main(int argc, char *argv[]){
 	for(it = 0; it < iterations; it++){
 
 		if(my_rank == 0){
+			/*If not first iteration, copy all the values received from other processes*/
 			if(it != 0){
 				int s = intervalRoundBodies;//(nBodies + p - 1) / p;
 
@@ -177,7 +178,8 @@ int main(int argc, char *argv[]){
 				pr[j].y += pr[j].vy * interval;
 				pr[j].z += pr[j].vz * interval;
 			}
-
+			
+			//Master doesn't need to copy the values for the gather call
 			for(j = 0; j < intervalRoundBodies; j++){
 				tmpPr[j].x = 0;
 				tmpPr[j].y = 0;
@@ -228,6 +230,7 @@ int main(int argc, char *argv[]){
 
 			printf("**PROCESS %d** Values copied in tmp\n", my_rank);
 
+			//Fill in the padding added in the struct
 			if(my_rank == p - 1 && relBase < roundBodies){
 				while(relBase < roundBodies){
 					tmpPr[n].x = 0;
@@ -260,6 +263,7 @@ int main(int argc, char *argv[]){
 
 		MPI_Gather(tmpPr, intervalRoundBodies, mpi_particle, tmpRecvPr, intervalRoundBodies, mpi_particle, 0, MPI_COMM_WORLD);
 
+		//Write the result of iteration in log file
 		if(my_rank == 0){
 			int l;
 			log = fopen("log.txt", "a+");
@@ -277,6 +281,7 @@ int main(int argc, char *argv[]){
 	free(tmpPr);
 	free(tmpRecvPr);
 
+	//Obtain time needed
 	if(my_rank == 0){
 		clock_t end = clock();
 		double interval = (double) (end - start) / CLOCKS_PER_SEC;
