@@ -70,6 +70,7 @@ Iterazioni: 5
 |20000| 36.24 | 18.17 | **9.14** | 7.1 | 5.36|
 |30000| 81.44 | 40.8 | 20.48 | **15.84** | 11.89 |
 |40000| 144.75 | 72.7 | 36.35 | 28.28 | **21.06** |
+
 ![Weak scalability graph](https://github.com/Fulvio97/Nbody_mpi/blob/master/Weak%20scalability.jpg?raw=true)
 
 ### Strong Scalability
@@ -82,6 +83,7 @@ Iterazioni: 5
 |20000| 36.24 | 18.17 | 12.15 | 9.14 | 8.47 | 7.1 | 6.08 | 5.36 |
 |30000| 81.44 | 40.8 | 27.25 | 20.48 | 19.02 | 15.84 | 13.57 | 11.89 |
 |40000| 144.75 | 72.7 | 48.4 | 36.35 | 33.62 | 28.28 | 24.07 | 21.06 |
+
 ![Strong scalability graph](https://github.com/Fulvio97/Nbody_mpi/blob/master/Strong%20scalability.jpg?raw=true)
 
 ### Descrizione risultati
