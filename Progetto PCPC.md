@@ -59,6 +59,8 @@ Le comunicazioni tra processi invece vengono compiute attraverso le funzioni MPI
 
 ## Risultati
 
+La computazione è avvenuta tramite macchine EC2 di AWS, più precisamente sono state utilizzate istanze t2.xlarge per eseguire i test e benchmark, di seguito sono riportati tutti i dati ottenuti dalle operazioni citate.
+
 ### Weak Scalability
 
 Nella weak scalability viene calcolato il decremento dell'efficienza all'aumentare dei processi. In questo caso ogni processo ha sempre lo stesso carico di lavoro che quindi aumenta alla stessa velocità dei processi. Il numero di iterazioni è pari a cinque.
