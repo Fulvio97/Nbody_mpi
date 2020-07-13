@@ -41,21 +41,21 @@ Il calcolo delle forze da applicare al corpo viene fatto attraverso la seguente 
 		}
 Ogni processo esegue la funzione sul proprio intervallo e sovrascrive i vecchi dati grazie al seguente codice
 
-    for(relBase = my_rank * ((nBodies + p - 1) / p); relBase < (my_rank * (nBodies + p - 1) / p) + ((nBodies + p - 1) / p) && relBase < nBodies; relBase++){
+    for(relBase = my_rank * intervalRoundBodies; relBase < my_rank * intervalRoundBodies + intervalRoundBodies && relBase < nBodies; relBase++){
 				calcForce(relBase, pr, nBodies);
 			}
-	for(relBase = my_rank * ((nBodies + p - 1) / p); relBase <  (my_rank * (nBodies + p - 1) / p) + ((nBodies + p - 1) / p) && relBase < nBodies; relBase++){
+	for(relBase = my_rank * intervalRoundBodies; relBase <  my_rank * intervalRoundBodies + intervalRoundBodies && relBase < nBodies; relBase++){
 				pr[relBase].x += pr[relBase].vx * interval;
 				pr[relBase].y += pr[relBase].vy * interval;
 				pr[relBase].z += pr[relBase].vz * interval;
 			}
 Le comunicazioni tra processi invece vengono compiute attraverso le funzioni MPI broadcast e gather
 
-    MPI_Bcast(pr, nBodies, mpi_particle, 0, MPI_COMM_WORLD);
+    MPI_Bcast(pr, roundBodies, mpi_particle, 0, MPI_COMM_WORLD)
     
     //Task necessari per il funzionamento del programma...
     
-    MPI_Gather(tmpPr, (nBodies + p - 1) / p, mpi_particle, tmpRecvPr, (nBodies + p - 1) / p, mpi_particle, 0, MPI_COMM_WORLD);
+    MPI_Gather(tmpPr, intervalRoundBodies, mpi_particle, tmpRecvPr, intervalRoundBodies, mpi_particle, 0, MPI_COMM_WORLD);
 
 ## Risultati
 
